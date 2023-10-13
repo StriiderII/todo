@@ -1,0 +1,24 @@
+{
+  "app_title" : "اشتغل يا صاحبي",
+  "settings" : "الإعدادات",
+  "task_list" : "قائمة المهام",
+  "english" : "الإنجليزية",
+  "arabic" : "العربية",
+  "light" : "مضيء",
+  "dark" : "ليلي",
+  "theme" : "النمط",
+  "language": "اللغة",
+  "task_title" : "عنوان المهمه",
+  "description" : "الوصف",
+  "add_new_task" : "اضافة مهمه جديده",
+  "enter_task_title" : "اكتب عنوان المهمه",
+  "enter_task_description" : "اكتب وصف المهمه",
+  "select_date" : "اختار التاريخ",
+  "add" : "اضافه",
+  "edit_task" : "تغديل المهمه",
+  "this_is_title" : "هذا عنوان",
+  "task_details" : "تفاصيل المهمه",
+  "save_changes" : "حفظ النغييرات",
+  "delete" : "حذف"
+
+}
