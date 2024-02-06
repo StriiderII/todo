@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/DialogUtils/DialogUtils.dart';
 import 'package:todo/Model/Task.dart';
-import 'package:todo/Model/User.dart';
 import 'package:todo/Theme_settings/MyTheme.dart';
-import 'package:todo/TaskList/AddTaskBottomSheet.dart';
 import 'package:todo/providers/AppConfigProvider.dart';
+
 import 'package:todo/providers/ListProvider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:todo/FirebaseUtils/FireBaseUtils.dart';
@@ -14,7 +13,7 @@ import 'package:todo/providers/AuthProvider.dart';
 class TaskEdit extends StatefulWidget {
   final Task task;
 
-  TaskEdit({required this.task});
+  const TaskEdit({super.key, required this.task});
 
   @override
   _TaskEditState createState() => _TaskEditState();
@@ -47,7 +46,7 @@ class _TaskEditState extends State<TaskEdit> {
     widget.task.title = titleController.text;
     widget.task.description = descriptionController.text;
     widget.task.dateTime = selectedDate;
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    final authProvider = Provider.of<AutheProvider>(context, listen: false);
     if (authProvider.isUserLoggedInBefore()) {
 
       final userId = authProvider.currentUser!.id;
@@ -78,7 +77,7 @@ class _TaskEditState extends State<TaskEdit> {
       context: context,
       initialDate: selectedDate,
       firstDate: DateTime.now(),
-      lastDate: DateTime.now().add(Duration(days: 365)),
+      lastDate: DateTime.now().add(const Duration(days: 365)),
     );
     if (chosenDate != null) {
       selectedDate = chosenDate;
@@ -93,7 +92,7 @@ class _TaskEditState extends State<TaskEdit> {
     var provider = Provider.of<AppConfigProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Task'),
+        title: const Text('Edit Task'),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -104,17 +103,17 @@ class _TaskEditState extends State<TaskEdit> {
               color: Colors.white,
               borderRadius: BorderRadius.circular(20.0),
             ),
-            margin: EdgeInsets.all(20.0),
-            padding: EdgeInsets.all(10.0),
+            margin: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(10.0),
             child: Column(
               children: [
                 TextFormField(
                   controller: titleController,
-                  decoration: InputDecoration(labelText: 'Title'),
+                  decoration: const InputDecoration(labelText: 'Title'),
                 ),
                 TextFormField(
                   controller: descriptionController,
-                  decoration: InputDecoration(labelText: 'Description'),
+                  decoration: const InputDecoration(labelText: 'Description'),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03,) ,
                 Padding(

@@ -1,10 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:todo/FirebaseUtils/FireBaseUtils.dart';
 import 'package:todo/Model/User.dart' ;
-import 'package:cloud_firestore/cloud_firestore.dart';
-class AuthProvider extends ChangeNotifier{
+class AutheProvider extends ChangeNotifier{
   MyUser? currentUser;
   MyUser? firebaseAuthUser;
 

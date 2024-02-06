@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:provider/provider.dart';
 import 'package:todo/FirebaseUtils/FireBaseUtils.dart';
 import 'package:todo/Model/Task.dart';
 

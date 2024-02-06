@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
-import 'package:todo/DialogUtils/DialogUtils.dart';
 import 'package:todo/FirebaseUtils/FireBaseUtils.dart';
 import 'package:todo/Model/Task.dart';
-import 'package:todo/TaskList/TaskDetails.dart';
+import 'package:todo/providers/AppConfigProvider.dart';
 import 'package:todo/providers/AuthProvider.dart';
 import 'package:todo/providers/ListProvider.dart';
-import 'package:todo/providers/AppConfigProvider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import '../Theme_settings/MyTheme.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:todo/TaskList/TaskEdit.dart';
 
 class TaskWidget extends StatefulWidget {
   Task task;
-  TaskWidget({required this.task});
+  TaskWidget({super.key, required this.task});
 
   @override
   State<TaskWidget> createState() => _TaskWidgetState();
@@ -30,7 +27,7 @@ class _TaskWidgetState extends State<TaskWidget> {
     var provider = Provider.of<AppConfigProvider>(context);
 
     return Container(
-      margin: EdgeInsets.all(15),
+      margin: const EdgeInsets.all(15),
       child: Slidable(
         startActionPane: ActionPane(
           extentRatio: 0.25,
@@ -38,12 +35,12 @@ class _TaskWidgetState extends State<TaskWidget> {
           children: [
             SlidableAction(
               onPressed: (context) {
-                var authProvider = Provider.of<AuthProvider>(context, listen: false);
+                var authProvider = Provider.of<AutheProvider>(context, listen: false);
                 FirebaseUtils.deleteTaskFromFireStore(
                   widget.task,
                   authProvider.currentUser?.id ?? "",
                 ).timeout(
-                  Duration(milliseconds: 250),
+                  const Duration(milliseconds: 250),
                   onTimeout: () {
                     print('Deleted');
                     listProvider.getAllTasksFromFireStore(authProvider.currentUser?.id ?? "");
@@ -64,10 +61,10 @@ class _TaskWidgetState extends State<TaskWidget> {
           ],
         ),
         child: Container(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             color: provider.isDarkMode() ? MyTheme.darkBlackColor : MyTheme.whiteColor,
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(12),
               topRight: Radius.circular(12),
               bottomLeft: Radius.circular(12),
@@ -86,7 +83,7 @@ class _TaskWidgetState extends State<TaskWidget> {
               ),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -150,7 +147,7 @@ class _TaskWidgetState extends State<TaskWidget> {
                       )
                   )
                       : ImageIcon(
-                    AssetImage('assets/images/Icon_awesome_check.png'),
+                    const AssetImage('assets/images/Icon_awesome_check.png'),
                     color: MyTheme.whiteColor,
                   ),
                 ),

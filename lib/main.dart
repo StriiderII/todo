@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,11 +6,13 @@ import 'package:todo/Registration/LoginPage.dart';
 import 'package:todo/Registration/SignUpPage.dart';
 import 'package:todo/providers/AuthProvider.dart';
 import 'package:todo/providers/ListProvider.dart';
-import 'package:todo/providers/AppConfigProvider.dart';
+
 import 'firebase_options.dart';
 import 'package:todo/Home/HomeScreen.dart';
 import 'package:todo/TaskList/TaskDetails.dart';
 import 'package:todo/Theme_settings/MyTheme.dart';
+
+import 'providers/AppConfigProvider.dart';
 
 
 
@@ -33,16 +34,18 @@ void main() async {
         ChangeNotifierProvider<ListProvider>(
           create: (context) => ListProvider(),
         ),
-        ChangeNotifierProvider<AuthProvider>(
-          create: (context) => AuthProvider()
+        ChangeNotifierProvider<AutheProvider>(
+          create: (context) => AutheProvider()
         ),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
@@ -50,10 +53,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: SignUpPage.routeName,
       routes: {
-        HomeScreen.routeName: (context) => HomeScreen(),
-        TaskDetailsScreen.routeName: (context) => TaskDetailsScreen(),
-        LoginPage.routeName: (context) => LoginPage(),
-        SignUpPage.routeName: (context) => SignUpPage(),
+        HomeScreen.routeName: (context) => const HomeScreen(),
+        TaskDetailsScreen.routeName: (context) => const TaskDetailsScreen(),
+        LoginPage.routeName: (context) => const LoginPage(),
+        SignUpPage.routeName: (context) => const SignUpPage(),
 
       },
       localizationsDelegates: AppLocalizations.localizationsDelegates,

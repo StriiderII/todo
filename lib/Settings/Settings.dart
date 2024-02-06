@@ -3,15 +3,18 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/DialogUtils/DialogUtils.dart';
 import 'package:todo/Registration/LoginPage.dart';
+import 'package:todo/Settings/language_bottom_sheet.dart';
 import 'package:todo/Settings/theme_bottom_sheet.dart';
 import 'package:todo/Theme_settings/MyTheme.dart';
 import 'package:todo/providers/AppConfigProvider.dart';
+
 import 'package:todo/providers/AuthProvider.dart';
 import 'package:todo/providers/ListProvider.dart';
-import 'language_bottom_sheet.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class SettingsTab extends StatefulWidget {
+  const SettingsTab({super.key});
+
   @override
   State<SettingsTab> createState() => _SettingsTabState();
 }
@@ -20,13 +23,13 @@ class _SettingsTabState extends State<SettingsTab> {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
-    var authProvider = Provider.of<AuthProvider>(context);
+    var authProvider = Provider.of<AutheProvider>(context);
     var listProvider = Provider.of<ListProvider>(context);
 
     return ListView(
       children: [
         Padding(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -34,7 +37,7 @@ class _SettingsTabState extends State<SettingsTab> {
                 AppLocalizations.of(context)!.language,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               InkWell(
@@ -47,7 +50,7 @@ class _SettingsTabState extends State<SettingsTab> {
                         ? MyTheme.darkBlackColor
                         : MyTheme.whiteColor,
                   ),
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -55,19 +58,19 @@ class _SettingsTabState extends State<SettingsTab> {
                         provider.appLanguage,
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
-                      Icon(Icons.arrow_drop_down)
+                      const Icon(Icons.arrow_drop_down)
                     ],
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Text(
                 AppLocalizations.of(context)!.theme,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               InkWell(
@@ -80,7 +83,7 @@ class _SettingsTabState extends State<SettingsTab> {
                         ? MyTheme.darkBlackColor
                         : MyTheme.whiteColor,
                   ),
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -90,7 +93,7 @@ class _SettingsTabState extends State<SettingsTab> {
                             : AppLocalizations.of(context)!.light,
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
-                      Icon(Icons.arrow_drop_down)
+                      const Icon(Icons.arrow_drop_down)
                     ],
                   ),
                 ),
@@ -101,12 +104,11 @@ class _SettingsTabState extends State<SettingsTab> {
               ElevatedButton(
                 onPressed: () {
                   logout();
-
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: MyTheme.redColor,
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 50, vertical: 15),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
                   ),
@@ -126,28 +128,28 @@ class _SettingsTabState extends State<SettingsTab> {
   void showLanguageBottomSheet() {
     showModalBottomSheet(
       context: context,
-      builder: (context) => LanguageBottomSheet(),
+      builder: (context) => const LanguageBottomSheet(),
     );
   }
 
   void showThemeBottomSheet() {
     showModalBottomSheet(
       context: context,
-      builder: (context) => ThemeBottomSheet(),
+      builder: (context) => const ThemeBottomSheet(),
     );
   }
 
   void logout() {
-    var authProvider = Provider.of<AuthProvider>(context,listen: false);
-    DialogUtils.showMessage(context, 'You sure you want to logout?',
-    posActionName: 'Yes',
-      posAction: (){
+    var authProvider = Provider.of<AutheProvider>(context, listen: false);
+    DialogUtils.showMessage(
+      context,
+      'You sure you want to logout?',
+      posActionName: 'Yes',
+      posAction: () {
         authProvider.logout();
-        Navigator.pushReplacementNamed(context,
-            LoginPage.routeName);
+        Navigator.pushReplacementNamed(context, LoginPage.routeName);
       },
       negActionName: 'Cancel',
     );
-
   }
 }

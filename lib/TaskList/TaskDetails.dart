@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/Theme_settings/MyTheme.dart';
-import 'package:todo/providers/AppConfigProvider.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:todo/providers/AppConfigProvider.dart';
 
 class TaskDetailsScreen extends StatefulWidget {
   static const String routeName = 'task_details_screen';
+
+  const TaskDetailsScreen({super.key});
 
   @override
   State<TaskDetailsScreen> createState() => _TaskDetailsScreenState();
@@ -35,12 +38,12 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.only(bottom: 100),
-          padding: EdgeInsets.all(12),
+          margin: const EdgeInsets.only(bottom: 100),
+          padding: const EdgeInsets.all(12),
           child: Form(
             key: formKey,
             child: Container(
-              margin: EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: provider.isDarkMode()
                     ? MyTheme.darkBlackColor
@@ -129,9 +132,9 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 100,),
+                  const SizedBox(height: 100,),
                   Container(
-                    margin: EdgeInsets.all(50),
+                    margin: const EdgeInsets.all(50),
                     child: ElevatedButton(
                       onPressed: () {
                         SaveChanges();
@@ -164,7 +167,7 @@ class _TaskDetailsScreenState extends State<TaskDetailsScreen> {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime.now(),
-      lastDate: DateTime.now().add(Duration(days: 365)),
+      lastDate: DateTime.now().add(const Duration(days: 365)),
     );
     if (chosenDate != null) {
       setState(() {

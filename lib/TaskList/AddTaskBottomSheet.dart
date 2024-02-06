@@ -4,15 +4,15 @@ import 'package:todo/DialogUtils/DialogUtils.dart';
 import 'package:todo/FirebaseUtils/FireBaseUtils.dart';
 import 'package:todo/Model/Task.dart';
 import 'package:todo/Theme_settings/MyTheme.dart';
+import 'package:todo/providers/AppConfigProvider.dart';
 import 'package:todo/providers/AuthProvider.dart';
 import 'package:todo/providers/ListProvider.dart';
-import 'package:todo/providers/ListProvider.dart';
-import '../providers/ListProvider.dart';
-import '../providers/AppConfigProvider.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AddTaskBottomSheet extends StatefulWidget {
+  const AddTaskBottomSheet({super.key});
+
   @override
   State<AddTaskBottomSheet> createState() => _AddTaskBottomSheetState();
 }
@@ -30,7 +30,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
     return Container(
       color:
           provider.isDarkMode() ? MyTheme.darkBlackColor : MyTheme.whiteColor,
-      padding: EdgeInsets.all(12),
+      padding: const EdgeInsets.all(12),
       child: Column(
         children: [
           Text(
@@ -153,7 +153,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
       context: context,
       initialDate: selectedDate,
       firstDate: DateTime.now(),
-      lastDate: DateTime.now().add(Duration(days: 365)),
+      lastDate: DateTime.now().add(const Duration(days: 365)),
     );
     if (chosenDate != null) {
       selectedDate = chosenDate;
@@ -168,7 +168,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
         description: description,
         dateTime: selectedDate,
       );
-      var authProvider = Provider.of<AuthProvider>(context, listen: false);
+      var authProvider = Provider.of<AutheProvider>(context, listen: false);
       DialogUtils.showLoading(context, 'Loading...');
 
 

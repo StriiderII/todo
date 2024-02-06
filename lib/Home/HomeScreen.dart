@@ -4,12 +4,15 @@ import 'package:todo/Settings/Settings.dart';
 import 'package:todo/TaskList/AddTaskBottomSheet.dart';
 import 'package:todo/TaskList/TaskList.dart';
 import 'package:todo/Theme_settings/MyTheme.dart';
-import 'package:todo/providers/AppConfigProvider.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:todo/providers/AuthProvider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../providers/AppConfigProvider.dart';
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'home_screen';
+
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -21,11 +24,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
-    var authProvider = Provider.of<AuthProvider>(context);
+    var authProvider = Provider.of<AutheProvider>(context);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 120,
-        title: Text('${authProvider.currentUser?.name??''}',
+        title: Text(authProvider.currentUser?.name??'',
           style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
@@ -33,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
         color: provider.isDarkMode()
             ? MyTheme.darkBlackColor
             : MyTheme.whiteColor,
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         notchMargin: 8,
         child: BottomNavigationBar(
             currentIndex: selectedIndex,
@@ -43,10 +46,10 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             items: [
               BottomNavigationBarItem(
-                  icon: Icon(Icons.list),
+                  icon: const Icon(Icons.list),
                   label: AppLocalizations.of(context)!.task_list),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.settings),
+                  icon: const Icon(Icons.settings),
                   label: AppLocalizations.of(context)!.settings),
             ]),
       ),
@@ -62,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onPressed: () {
           showAddTaskBottomSheet();
         },
-        child: Icon(
+        child: const Icon(
           Icons.add,
           size: 30,
         ),
@@ -72,10 +75,10 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  List<Widget> tabs = [TaskListTab(), SettingsTab()];
+  List<Widget> tabs = [const TaskListTab(), const SettingsTab()];
 
   void showAddTaskBottomSheet() {
     showModalBottomSheet(
-        context: context, builder: (context) => AddTaskBottomSheet());
+        context: context, builder: (context) => const AddTaskBottomSheet());
   }
 }

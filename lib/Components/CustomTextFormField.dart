@@ -11,7 +11,7 @@ class CustomTextFormField extends StatefulWidget {
   TextEditingController controller;
   Validator myValidator;
 
-  CustomTextFormField({
+  CustomTextFormField({super.key, 
     required this.label,
     this.keyboardType = TextInputType.text,
     this.isPassword = false,
